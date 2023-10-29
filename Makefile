@@ -4,7 +4,7 @@ SRCS = srcs/main.c \
 	   srcs/childs.c \
 	   srcs/error.c \
 
-OBJS = ${patsubst ${SRCS_DIR}%.c, ${OBJS_DIR}%.o ,${SRCS}}
+OBJS = ${patsubst $(SRCS_DIR)%.c,  $(OBJS_DIR)%.o, $(SRCS)}
 
 NAME = pipex
 SRCS_DIR = srcs/
@@ -19,11 +19,11 @@ ${OBJS_DIR}%.o: ${SRCS_DIR}%.c
 	mkdir -p ${@D}
 	${CC} ${CFLAGS} -I {INCS_DIR} -c $< -o $@ 
 
+${NAME}: ${OBJS} ${LIBFT}
+	${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBFT}
+
 ${LIBFT}:
 	make -C libft
-
-${NAME}: ${LIBFT} ${OBJS}
-	${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBFT}
 
 
 .PHONY: all clean fclean re
@@ -31,7 +31,7 @@ all: ${NAME};
 
 clean:
 	make fclean -C libft
-	rm -rf ${0BJS_DIR}
+	rm -rf objs
 
 fclean: clean
 	rm -rf ${NAME}

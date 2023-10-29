@@ -20,10 +20,11 @@ char *find_command(char **paths, char *cmd)
 
 void child_exe_cmd1()
 {
-
+    printf("");
 }
 
 void child_exe_cmd2()
 {
+    printf("");
 
 }

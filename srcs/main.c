@@ -23,11 +23,11 @@ int main(int argc, char **argv, char **envp)
         pipex.pid1 = fork();
         printf("pid1 %i\n", pipex.pid1);
         if(pipex.pid1 == 0)
-           child_exe_cmd1(pipex.paths, argv[2]);
+        //    child_exe_cmd1(pipex.paths, argv[2]);
         pipex.pid2 = fork();
         printf("pid2 %i\n", pipex.pid2);
         if(pipex.pid2 == 0)   
-            child_exe_cmd2(pipex.paths, argv[3]); 
+            // child_exe_cmd2(pipex.paths, argv[3]); 
         // close_pipe();
         waitpid(pipex.pid1, NULL, 0);
         waitpid(pipex.pid2, NULL, 0);
