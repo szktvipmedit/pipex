@@ -2,6 +2,7 @@ SRCS = srcs/main.c \
 	   srcs/init.c \
 	   srcs/path.c \
 	   srcs/childs.c \
+	   srcs/clear.c \
 	   srcs/error.c \
 
 OBJS = ${patsubst $(SRCS_DIR)%.c,  $(OBJS_DIR)%.o, $(SRCS)}
@@ -13,7 +14,7 @@ INCS_DIR = incs/
 LIBFT = libft/libft.a
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 ${OBJS_DIR}%.o: ${SRCS_DIR}%.c
 	mkdir -p ${@D}
