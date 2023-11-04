@@ -10,7 +10,7 @@ char	*find_command(char **paths, char *cmd)
 		tmp = ft_strjoin(*paths, "/");
 		command = ft_strjoin(tmp, cmd);
 		free(tmp);
-		if (access(command, 0) == 0)
+		if (access(command, F_OK) == 0)
 			return (command);
 		free(command);
 		paths++;

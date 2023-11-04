@@ -5,13 +5,22 @@ SRCS = srcs/main.c \
 	   srcs/clear.c \
 	   srcs/error.c \
 
+BONUS_SRCS = bonus_srcs/main.c \
+	   		 bonus_srcs/init.c \
+	   		 bonus_srcs/path.c \
+	   		 bonus_srcs/childs.c \
+	  		 bonus_srcs/clear.c \
+	  		 bonus_srcs/error.c \
+
 OBJS = ${patsubst $(SRCS_DIR)%.c,  $(OBJS_DIR)%.o, $(SRCS)}
 
 NAME = pipex
 SRCS_DIR = srcs/
 OBJS_DIR = objs/
 INCS_DIR = incs/
-LIBFT = libft/libft.a
+LIBFT_DIR = libft/
+
+LIBFT = ${LIBFT_DIR}/libft.a
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
@@ -24,14 +33,14 @@ ${NAME}: ${OBJS} ${LIBFT}
 	${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBFT}
 
 ${LIBFT}:
-	make -C libft
+	make -C ${LIBFT_DIR}
 
 
 .PHONY: all clean fclean re
 all: ${NAME};
 
 clean:
-	make fclean -C libft
+	make fclean -C ${LIBFT_DIR}
 	rm -rf objs
 
 fclean: clean
