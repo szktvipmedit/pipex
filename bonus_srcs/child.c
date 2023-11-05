@@ -2,7 +2,7 @@
 
 static char *find_path_inc_cmd(t_pipex *pipex, char *cmd)
 {
-    size_t i;
+    int i;
     i = 0;
     char *temp;
     char *path;
@@ -37,7 +37,7 @@ static void find_command(t_pipex *pipex, char **argv, int pipe_idx)
     pipex->cmd_path = find_path_inc_cmd(pipex, pipex->arg_cmd[0]);
     if(!pipex->cmd_path)
     {
-        child_clear();
+        child_clear(pipex);
         error_message(ERR_MALLOC);
         exit(1);
     }
@@ -57,11 +57,11 @@ void child(t_pipex pipex, int pipe_idx, char **argv, char **envp)
         if(pipe_idx == 0)
         {
             dup2(pipex.infile, 0);
-            dup2(pipex.pipe_ends[1], 1);
+            // dup2(pipex.pipe_ends[1], 1);
         }
         else if(pipe_idx == pipex.pipe_end_num - 1)
         {
-            dup2(pipex.pipe_ends[pipe_idx], 0);
+            dup2(pipex.pipe_ends[2 * pipe_idx - 2], 0);
             dup2(pipex.outfile, 1);
         }
         else
@@ -69,7 +69,7 @@ void child(t_pipex pipex, int pipe_idx, char **argv, char **envp)
             dup2(pipex.pipe_ends[2 * pipe_idx - 2], 0);
             dup2(pipex.pipe_ends[2 * pipe_idx + 1], 1);
         }
-        close();
+        all_close_pipes(&pipex);
         find_command(&pipex, argv, pipe_idx);
         
         execve(pipex.cmd_path, pipex.arg_cmd , envp); 

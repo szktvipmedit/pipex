@@ -19,7 +19,8 @@ void get_infile_case_heredoc(t_pipex *pipex, char **argv)
         buf = get_next_line(0);
         if(!buf)
             exit(1);
-        if(ft_strncmp(argv[2], buf, ft_strlen(argv[2]) + 1))
+        buf[ft_strlen(buf) - 1] = '\0';
+        if(!ft_strncmp(argv[2], buf, ft_strlen(argv[2]) + 1))
         {
             free(buf);
             break;

@@ -1,21 +1,22 @@
-SRCS = srcs/main.c \
+#SRCS = srcs/main.c \
 	   srcs/init.c \
 	   srcs/path.c \
 	   srcs/childs.c \
 	   srcs/clear.c \
 	   srcs/error.c \
 
-BONUS_SRCS = bonus_srcs/main.c \
+SRCS = bonus_srcs/main.c \
 	   		 bonus_srcs/init.c \
-	   		 bonus_srcs/path.c \
-	   		 bonus_srcs/childs.c \
+	   		 bonus_srcs/get_file.c \
+	   		 bonus_srcs/here_doc.c \
+	   		 bonus_srcs/child.c \
 	  		 bonus_srcs/clear.c \
 	  		 bonus_srcs/error.c \
 
 OBJS = ${patsubst $(SRCS_DIR)%.c,  $(OBJS_DIR)%.o, $(SRCS)}
 
 NAME = pipex
-SRCS_DIR = srcs/
+SRCS_DIR = bonus_srcs/
 OBJS_DIR = objs/
 INCS_DIR = incs/
 LIBFT_DIR = libft/

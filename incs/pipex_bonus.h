@@ -45,7 +45,7 @@ char		*find_path_addr(char **envp);
 
 // init.c
 void		create_pipe(t_pipex *pipex);
-bool init_pipex(t_pipex *pipex, int argc, char **argv, char **envp);
+void init_pipex(t_pipex *pipex, int argc, char **argv, char **envp);
 // get_file.c
 void		get_infile_case_default(t_pipex *pipex, char **argv);
 void		get_infile_case_heredoc(t_pipex *pipex, char **argv);
@@ -61,6 +61,7 @@ int			is_there_heredoc(t_pipex *pipex, char *arg_may_have_heredoc);
 // main.c
 
 // clear.c
+void all_close_pipes(t_pipex *pipex);
 void		pipex_clear(t_pipex *pipex);
 void		pipex_clear_by_get_paths(t_pipex *pipex);
 void		child_clear(t_pipex *pipex);

@@ -11,7 +11,7 @@ void	child_clear(t_pipex *pipex)
 		pipex->arg_cmd++;
 	}
 	free(pipex->arg_cmd);
-	free(pipex->cmd_path);
+	// free(pipex->cmd_path);
 }
 
 void	parent_clear(t_pipex *pipex)

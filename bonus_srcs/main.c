@@ -1,11 +1,11 @@
 #include "../incs/pipex_bonus.h"
 
-void    create_prosess_to_execute_command(t_pipex *pipex)
+void    create_prosess_to_execute_command(t_pipex *pipex, char **argv, char **envp)
 {
     int pipe_idx;
     pipe_idx = 0;
     while(pipe_idx < pipex->cmd_num)
-        child(pipex, pipe_idx++);
+        child(*pipex, pipe_idx++, argv, envp);
 }
 
 int main(int argc, char **argv, char **envp)
@@ -17,7 +17,7 @@ int main(int argc, char **argv, char **envp)
     init_pipex(&pipex, argc, argv, envp);
 
     //each_command_execute
-    create_prosess_to_execute_command(&pipex);
+    create_prosess_to_execute_command(&pipex, argv, envp);
     //pipe_close
 
     waitpid(-1, NULL, 0);

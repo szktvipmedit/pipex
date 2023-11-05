@@ -32,9 +32,9 @@ static void create_pipes(t_pipex *pipex, int argc)
 
 static void get_paths(t_pipex *pipex, char **envp)
 {
-
-    while(*envp && !ft_strncmp(*envp, "PATH=", 5))
+    while(ft_strncmp(*envp, "PATH=", 5))
         envp++;
+    
     pipex->path_addr = *envp + 5;
 
     pipex->paths = ft_split(pipex->path_addr, ':');
@@ -42,10 +42,11 @@ static void get_paths(t_pipex *pipex, char **envp)
         pipex_clear_by_get_paths(pipex);
 }
 
-bool init_pipex(t_pipex *pipex, int argc, char **argv, char **envp)
+void init_pipex(t_pipex *pipex, int argc, char **argv, char **envp)
 {
     get_infile(pipex, argv);
     get_outfile(pipex, argc, argv); 
     create_pipes(pipex, argc);
     get_paths(pipex, envp);
+    
 }

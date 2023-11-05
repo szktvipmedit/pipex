@@ -23,7 +23,7 @@ char	*ft_input_each_fd(int fd, char *input)
 	if (!str)
 		return (NULL);
 	read_status = 1;
-	while (!ft_strchr(input, '\n') && read_status != 0)
+	while (!ft_gnlstrchr(input, '\n') && read_status != 0)
 	{
 		read_status = read(fd, str, BUFFER_SIZE);
 		if (read_status == -1)
@@ -32,7 +32,7 @@ char	*ft_input_each_fd(int fd, char *input)
 			return (NULL);
 		}
 		str[read_status] = '\0';
-		input = ft_strjoin(input, str);
+		input = ft_gnlstrjoin(input, str);
 	}
 	free(str);
 	return (input);
