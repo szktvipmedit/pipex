@@ -57,7 +57,7 @@ void child(t_pipex pipex, int pipe_idx, char **argv, char **envp)
         if(pipe_idx == 0)
         {
             dup2(pipex.infile, 0);
-            // dup2(pipex.pipe_ends[1], 1);
+            dup2(pipex.pipe_ends[1], 1);
         }
         else if(pipe_idx == pipex.pipe_end_num - 1)
         {
